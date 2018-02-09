@@ -1,18 +1,13 @@
 (function() {
-  if (typeof process === 'object') {
-    require('mocha-jsdom')();
-  }
 
-  var root = this;
-  var assert = (root.chai || require('chai')).assert;
+  var assert = window.chai.assert;
 
   describe('NProgress', function() {
     var $, NProgress;
 
     beforeEach(function() {
-      $ = root.jQuery || require('jquery');
-      NProgress = root.NProgress || require('../nprogress');
-
+      $ = window.jQuery;
+      NProgress = window.NProgress;
       this.settings = $.extend({}, NProgress.settings);
     });
 

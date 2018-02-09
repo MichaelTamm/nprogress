@@ -2,10 +2,6 @@ Testing
 -------
 
     $ npm install
-    $ npm test
-
-or try it out in the browser:
-
     $ open test/index.html
 
 Testing component build
