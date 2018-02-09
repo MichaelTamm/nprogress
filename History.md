@@ -1,6 +1,7 @@
 ## Changes by Michael Tamm
- * Removed support for specifying a different parent container.
- * Removed spinner.
+ * Removed support for specifying a different parent container
+ * Removed spinner
+ * Removed function NProgress.promise(...)
 
 ## [v0.2.0] - May 13, 2015
 
