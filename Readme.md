@@ -130,25 +130,6 @@ Changes the minimum percentage used upon starting. (default: `0.08`)
 NProgress.configure({ minimum: 0.1 });
 ~~~
 
-#### `template`
-You can change the markup using `template`. To keep the progress
-bar working, keep an element with `role='bar'` in there. See the [default template]
-for reference.
-
-~~~ js
-NProgress.configure({
-  template: "<div class='....'>...</div>"
-});
-~~~
-
-#### `easing` and `speed`
-Adjust animation settings using *easing* (a CSS easing string)
-and *speed* (in ms). (default: `ease` and `200`)
-
-~~~ js
-NProgress.configure({ easing: 'ease', speed: 500 });
-~~~
-
 #### `trickle`
 Turn off the automatic incrementing behavior by setting this to `false`. (default: `true`)
 
@@ -161,13 +142,6 @@ Adjust how often to trickle/increment, in ms.
 
 ~~~ js
 NProgress.configure({ trickleSpeed: 200 });
-~~~
-
-#### `showSpinner`
-Turn off loading spinner by setting it to false. (default: `true`)
-
-~~~ js
-NProgress.configure({ showSpinner: false });
 ~~~
 
 Customization

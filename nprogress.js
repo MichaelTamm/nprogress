@@ -6,13 +6,9 @@ window.NProgress = (function() {
 
   var Settings = NProgress.settings = {
     minimum: 0.08,
-    easing: 'linear',
     positionUsing: '',
-    speed: 200,
     trickle: true,
     trickleSpeed: 200,
-    barSelector: '[role="bar"]',
-    template: '<div class="bar" role="bar"><div class="peg"></div></div>'
   };
 
   /**
@@ -52,9 +48,8 @@ window.NProgress = (function() {
     NProgress.status = (n === 1 ? null : n);
 
     var progress = NProgress.render(!started),
-        bar      = progress.querySelector(Settings.barSelector),
-        speed    = Settings.speed,
-        ease     = Settings.easing;
+        bar      = progress.querySelector('#nprogress .bar'),
+        speed    = 200; /* ms */
 
     progress.offsetWidth; /* Repaint */
 
@@ -63,7 +58,7 @@ window.NProgress = (function() {
       if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
 
       // Add transition
-      css(bar, barPositionCSS(n, speed, ease));
+      css(bar, barPositionCSS(n, speed));
 
       if (n === 1) {
         // Fade out
@@ -177,9 +172,9 @@ window.NProgress = (function() {
 
     var progress = document.createElement('div');
     progress.id = 'nprogress';
-    progress.innerHTML = Settings.template;
+    progress.innerHTML = '<div class="bar"><div class="peg"></div></div>';
 
-    var bar      = progress.querySelector(Settings.barSelector),
+    var bar      = progress.querySelector('#nprogress .bar'),
         perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0);
 
     css(bar, {
@@ -257,10 +252,10 @@ window.NProgress = (function() {
 
   /**
    * (Internal) returns the correct CSS for changing the bar's
-   * position given an n percentage, and speed and ease from Settings
+   * position given an n percentage, and speed from Settings
    */
 
-  function barPositionCSS(n, speed, ease) {
+  function barPositionCSS(n, speed) {
     var barCSS;
 
     if (Settings.positionUsing === 'translate3d') {
@@ -271,7 +266,7 @@ window.NProgress = (function() {
       barCSS = { 'margin-left': toBarPerc(n)+'%' };
     }
 
-    barCSS.transition = 'all '+speed+'ms '+ease;
+    barCSS.transition = 'all '+speed+'ms linear';
 
     return barCSS;
   }

@@ -4,6 +4,7 @@
  * Removed function NProgress.promise(...)
  * Removed UMD support
  * Removed NProgress.version field
+ * Inlined some settings
 
 ## [v0.2.0] - May 13, 2015
 
