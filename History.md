@@ -3,6 +3,7 @@
  * Removed spinner
  * Removed function NProgress.promise(...)
  * Removed UMD support
+ * Removed NProgress.version field
 
 ## [v0.2.0] - May 13, 2015
 

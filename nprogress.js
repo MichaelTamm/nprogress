@@ -4,8 +4,6 @@
 window.NProgress = (function() {
   var NProgress = {};
 
-  NProgress.version = '0.2.0';
-
   var Settings = NProgress.settings = {
     minimum: 0.08,
     easing: 'linear',

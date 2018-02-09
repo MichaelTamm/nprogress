@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width">
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic' rel='stylesheet' type='text/css'>
-  
+
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src='nprogress.js'></script>
 
@@ -51,9 +51,8 @@
       </p>
     </div>
     <div class='actions'>
-      <a href='https://github.com/rstacruz/nprogress' class='button primary big'>
+      <a href='https://github.com/MichaelTamm/nprogress' class='button primary big'>
         Download
-        v<span class='version'></span>
       </a>
       <p class='brief'>Perfect for Turbolinks, Pjax, and other Ajax-heavy apps.</p>
     </div>
@@ -69,7 +68,6 @@
 
   <script>
     $('body').show();
-    $('.version').text(NProgress.version);
     NProgress.start();
     setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
 
