@@ -5,6 +5,7 @@
  * Removed UMD support
  * Removed NProgress.version field
  * Inlined some settings
+ * Added build script, which produces nprogress.min.js
 
 ## [v0.2.0] - May 13, 2015
 
