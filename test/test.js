@@ -30,14 +30,13 @@
       });
 
       it('.set(1) should appear and disappear', function(done) {
-        NProgress.configure({ speed: 10 });
         NProgress.set(0).set(1);
         assert.equal($("#nprogress").length, 1);
 
         setTimeout(function() {
           assert.equal($("#nprogress").length, 0);
           done();
-        }, 70);
+        }, 500);
       });
 
       it('must respect minimum', function() {
