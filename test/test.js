@@ -31,7 +31,6 @@
         assert.equal($("#nprogress").length, 1);
         assert.equal($("#nprogress .bar").length, 1);
         assert.equal($("#nprogress .peg").length, 1);
-        assert.equal($("#nprogress .spinner").length, 1);
         done();
       });
 
@@ -141,26 +140,6 @@
       });
     });
 
-    // ----
-
-    describe('.configure(showSpinner)', function() {
-      it('should render spinner by default', function() {
-        NProgress.start();
-
-        assert.equal($("#nprogress .spinner").length, 1);
-      });
-
-      it('should be true by default', function() {
-        assert.equal(NProgress.settings.showSpinner, true);
-      });
-
-      it('should hide (on false)', function() {
-        NProgress.configure({ showSpinner: false });
-        NProgress.start();
-
-        assert.equal($("#nprogress .spinner").length, 0);
-      });
-    });
   });
 
 })();

@@ -23,10 +23,8 @@
     speed: 200,
     trickle: true,
     trickleSpeed: 200,
-    showSpinner: true,
     barSelector: '[role="bar"]',
-    spinnerSelector: '[role="spinner"]',
-    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+    template: '<div class="bar" role="bar"><div class="peg"></div></div>'
   };
 
   /**
@@ -230,18 +228,12 @@
     progress.innerHTML = Settings.template;
 
     var bar      = progress.querySelector(Settings.barSelector),
-        perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0),
-        spinner;
+        perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0);
 
     css(bar, {
       transition: 'all 0 linear',
       transform: 'translate3d(' + perc + '%,0,0)'
     });
-
-    if (!Settings.showSpinner) {
-      spinner = progress.querySelector(Settings.spinnerSelector);
-      spinner && removeElement(spinner);
-    }
 
     document.body.appendChild(progress);
     return progress;
