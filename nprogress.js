@@ -3,6 +3,7 @@
 
 window.NProgress = (function() {
   var NProgress = {};
+  var status = null;
 
   var Settings = NProgress.settings = {
     minimum: 0.08,
@@ -32,8 +33,6 @@ window.NProgress = (function() {
    * Last number.
    */
 
-  NProgress.status = null;
-
   /**
    * Sets the progress bar status, where `n` is a number from `0.0` to `1.0`.
    *
@@ -45,7 +44,7 @@ window.NProgress = (function() {
     var started = NProgress.isStarted();
 
     n = clamp(n, Settings.minimum, 1);
-    NProgress.status = (n === 1 ? null : n);
+    status = (n === 1 ? null : n);
 
     var progress = NProgress.render(!started),
         bar      = progress.querySelector('#nprogress .bar'),
@@ -87,7 +86,7 @@ window.NProgress = (function() {
   };
 
   NProgress.isStarted = function() {
-    return typeof NProgress.status === 'number';
+    return typeof status === 'number';
   };
 
   /**
@@ -98,11 +97,11 @@ window.NProgress = (function() {
    *
    */
   NProgress.start = function() {
-    if (!NProgress.status) NProgress.set(0);
+    if (!status) NProgress.set(0);
 
     var work = function() {
       setTimeout(function() {
-        if (!NProgress.status) return;
+        if (!status) return;
         NProgress.trickle();
         work();
       }, Settings.trickleSpeed);
@@ -126,7 +125,7 @@ window.NProgress = (function() {
    */
 
   NProgress.done = function(force) {
-    if (!force && !NProgress.status) return this;
+    if (!force && !status) return this;
 
     return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
   };
@@ -136,7 +135,7 @@ window.NProgress = (function() {
    */
 
   NProgress.inc = function(amount) {
-    var n = NProgress.status;
+    var n = status;
 
     if (!n) {
       return NProgress.start();
@@ -173,7 +172,7 @@ window.NProgress = (function() {
     progress.innerHTML = '<div class="bar"><div class="peg"></div></div>';
 
     var bar      = progress.querySelector('#nprogress .bar'),
-        perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0);
+        perc     = fromStart ? '-100' : toBarPerc(status || 0);
 
     css(bar, {
       transition: 'all 0 linear',
