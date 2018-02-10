@@ -6,6 +6,7 @@
  * Removed NProgress.version field
  * Inlined some settings
  * Added build script, which produces nprogress.min.js
+ * The CSS class 'nprogress-busy' is no longer added to the document
 
 ## [v0.2.0] - May 13, 2015
 
