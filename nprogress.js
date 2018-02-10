@@ -4,12 +4,12 @@
 window.NProgress = (function() {
   var NProgress = {};
   var status = null;
+  var positionUsing = '';
 
   var Settings = NProgress.settings = {
     minimum: 0.08,
-    positionUsing: '',
     trickle: true,
-    trickleSpeed: 200,
+    trickleSpeed: 200
   };
 
   /**
@@ -54,7 +54,7 @@ window.NProgress = (function() {
 
     queue(function(next) {
       // Set positionUsing if it hasn't already been set
-      if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
+      if (positionUsing === '') positionUsing = getPositioningCSS();
 
       // Add transition
       css(bar, barPositionCSS(n, speed));
@@ -204,7 +204,7 @@ window.NProgress = (function() {
    * Determine which positioning CSS rule to use.
    */
 
-  NProgress.getPositioningCSS = function() {
+  function getPositioningCSS() {
     // Sniff on document.body.style
     var bodyStyle = document.body.style;
 
@@ -224,7 +224,7 @@ window.NProgress = (function() {
       // Browsers without translate() support, e.g. IE7-8
       return 'margin';
     }
-  };
+  }
 
   /**
    * Helpers
@@ -254,9 +254,9 @@ window.NProgress = (function() {
   function barPositionCSS(n, speed) {
     var barCSS;
 
-    if (Settings.positionUsing === 'translate3d') {
+    if (positionUsing === 'translate3d') {
       barCSS = { transform: 'translate3d('+toBarPerc(n)+'%,0,0)' };
-    } else if (Settings.positionUsing === 'translate') {
+    } else if (positionUsing === 'translate') {
       barCSS = { transform: 'translate('+toBarPerc(n)+'%,0)' };
     } else {
       barCSS = { 'margin-left': toBarPerc(n)+'%' };
