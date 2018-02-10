@@ -123,13 +123,6 @@ __Get the status value:__ To get the status value, use `.status`
 Configuration
 -------------
 
-#### `minimum`
-Changes the minimum percentage used upon starting. (default: `0.08`)
-
-~~~ js
-NProgress.configure({ minimum: 0.1 });
-~~~
-
 #### `trickle`
 Turn off the automatic incrementing behavior by setting this to `false`. (default: `true`)
 

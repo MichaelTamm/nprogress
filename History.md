@@ -4,7 +4,7 @@
  * Removed function NProgress.promise(...)
  * Removed UMD support
  * Removed NProgress.version field
- * Inlined some settings
+ * Removed settings and NProgress.configure(...) function
  * Added build script, which produces nprogress.min.js
  * The CSS class 'nprogress-busy' is no longer added to the document
  * Made NProgress.status private

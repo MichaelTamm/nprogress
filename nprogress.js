@@ -6,33 +6,6 @@ window.NProgress = (function() {
   var status = null;
   var positionUsing = '';
 
-  var Settings = NProgress.settings = {
-    minimum: 0.08,
-    trickle: true,
-    trickleSpeed: 200
-  };
-
-  /**
-   * Updates configuration.
-   *
-   *     NProgress.configure({
-   *       minimum: 0.1
-   *     });
-   */
-  NProgress.configure = function(options) {
-    var key, value;
-    for (key in options) {
-      value = options[key];
-      if (value !== undefined && options.hasOwnProperty(key)) Settings[key] = value;
-    }
-
-    return this;
-  };
-
-  /**
-   * Last number.
-   */
-
   /**
    * Sets the progress bar status, where `n` is a number from `0.0` to `1.0`.
    *
@@ -43,7 +16,7 @@ window.NProgress = (function() {
   NProgress.set = function(n) {
     var started = NProgress.isStarted();
 
-    n = clamp(n, Settings.minimum, 1);
+    n = clamp(n, 0.08, 1);
     status = (n === 1 ? null : n);
 
     var progress = NProgress.render(!started),
@@ -102,12 +75,12 @@ window.NProgress = (function() {
     var work = function() {
       setTimeout(function() {
         if (!status) return;
-        NProgress.trickle();
+        NProgress.inc();
         work();
-      }, Settings.trickleSpeed);
+      }, 200);
     };
 
-    if (Settings.trickle) work();
+    work();
 
     return this;
   };
@@ -153,10 +126,6 @@ window.NProgress = (function() {
       n = clamp(n + amount, 0, 0.994);
       return NProgress.set(n);
     }
-  };
-
-  NProgress.trickle = function() {
-    return NProgress.inc();
   };
 
   /**
@@ -248,7 +217,7 @@ window.NProgress = (function() {
 
   /**
    * (Internal) returns the correct CSS for changing the bar's
-   * position given an n percentage, and speed from Settings
+   * position given an n percentage and speed.
    */
 
   function barPositionCSS(n, speed) {
